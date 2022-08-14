@@ -411,7 +411,7 @@ function Chat() {
 
             <ChatMessages messages={messages} />
           </div>
-          {typing && <span>Opcy pisze...</span>}
+          {typing && <span>Obcy pisze...</span>}
           <footer>
             <form onSubmit={sendForm}>
               <input
