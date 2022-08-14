@@ -263,6 +263,7 @@ function Chat() {
       });
       setCkey("");
       setConnected(false);
+      resetCountdown();
 
       SaveMessage(2, "Rozłączyłeś się");
     } else {
