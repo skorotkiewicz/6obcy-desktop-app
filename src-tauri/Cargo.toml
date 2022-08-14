@@ -1,6 +1,6 @@
 [package]
 name = "app"
-version = "0.1.0"
+version = "0.2.1"
 description = "6obcy Desktop App"
 authors = ["Sebastian Korotkiewicz"]
 license = ""
@@ -9,26 +9,20 @@ default-run = "app"
 edition = "2021"
 rust-version = "1.57"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [build-dependencies]
 tauri-build = { version = "1.0.4", features = [] }
 
 [dependencies]
+serde = "1.0" 
 serde_json = "1.0"
-serde = { version = "1.0", features = ["derive"] }
 tauri = { version = "1.0.5", features = ["api-all"] }
-tokio = { version = "1.11", features = ["net"] }
-tokio-tungstenite = "*"
+tokio = { version = "1.17", features = ["net", "sync"] }
+tokio-tungstenite = { version = "0.17", features = ["native-tls"] }
 futures = "*"
 http = "*"
-# randua = "0.1.6"
-reqwest = "0.11.11"
-futures-util = { version = "0.3", default-features = false, features = ["sink", "std"] }
-tauri-plugin-websocket = { path = "../libs/rust/websocket/" }
+futures-util = "0.3" 
 tauri-plugin-store = { path = "../libs/rust/store" }
 randua = { path = "../libs/rust/randua" }
-# reqwest = { path = "../libs/rust/reqwest" }
 
 
 [dependencies.tungstenite]

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Store } from "./../libs/js/store";
 import ChatMessages from "./components/ChatMessages";
 import useWebSocket from "react-use-websocket";
-// import { emit, listen } from "@tauri-apps/api/event";
 import "./Chat.scss";
 
 function Chat() {
@@ -23,9 +22,6 @@ function Chat() {
   const [topicCountdown, setTopicCountdown] = useState(0);
   const [connectStatus, setConnectStatus] = useState(0);
   const [ceid, setCeid] = useState(1);
-  // const [proxy, setProxy] = useState("");
-  // const [proxyState, setProxyState] = useState(0);
-  const didUnmount = useRef(false);
   const countdown = useRef(null);
   let tcountdown = 0;
   const store = new Store(".settings.dat");
@@ -47,9 +43,6 @@ function Chat() {
       setTyp("");
     },
     shouldReconnect: (closeEvent) => true,
-    // shouldReconnect: (_closeEvent) => {
-    //   return didUnmount.current === false;
-    // },
   });
 
   useEffect(() => {
@@ -65,29 +58,11 @@ function Chat() {
 
   async function init() {
     let myWelcome = await store.get("welcome");
-    // let myProxy = await store.get("proxy");
     if (myWelcome) setWelcomeMessage(myWelcome);
-    // if (myProxy) {
-    //   setProxy(myProxy);
-    //   setProxyState(1);
-    // }
   }
 
   useEffect(() => {
     init();
-    // if (!(await store.get("proxy"))) {
-    //   main(null, false);
-    // }
-    // if (arg === null) {
-    //   main(null, false);
-    // } else {
-    //   let agent = new SocksProxyAgent("socks://" + arg);
-    //   main(arg, agent);
-    // }
-
-    return () => {
-      didUnmount.current = true;
-    };
   }, []);
 
   const parseJson = (str) => {
@@ -396,70 +371,9 @@ function Chat() {
               }}
             />
           </div>
-
-          {/* <div className={connected ? "connected" : "infos"}>
-            <strong>{info}</strong>
-          </div> */}
-
-          {/* <details>
-            <summary>Proxy</summary>
-            <div>
-              {proxyState === 2 && (
-                <div className="proxyInfo">
-                  Aby korzystać z proxy, uruchom ponownie aplikację.
-                </div>
-              )}
-
-              <small>
-                <div>
-                  <strong>Proszę podać SOCKET5 Proxy.</strong>
-                </div>
-              </small>
-            </div>
-            <input
-              type="text"
-              value={proxy}
-              placeholder="100.100.100.100:8080"
-              onChange={(e) => setProxy(e.target.value)}
-            />
-            <button
-              onClick={async () => {
-                await store.set("proxy", proxy);
-                setProxyState(2);
-              }}
-            >
-              Zapisz
-            </button>
-          </details> */}
         </aside>
         <div>
           <div className="messages">
-            {/* {proxy && proxyState === 1 && (
-              <div className="proxyMenu">
-                <div>Wykryto ustawienia proxy</div>
-                <div>
-                  Czy chcesz połączyć się z proxy: <strong>{proxy}</strong>
-                  <button
-                    onClick={async () => {
-                      await store.get("proxy");
-                      setProxyState(0);
-                    }}
-                  >
-                    Połącz z proxy
-                  </button>
-                  <button
-                    onClick={async () => {
-                      await store.set("proxy", null);
-                      setProxy(null);
-                      setProxyState(0);
-                    }}
-                  >
-                    Nie korzystaj z proxy
-                  </button>
-                </div>
-              </div>
-            )} */}
-
             {captcha.length > 0 && (
               <div className="captchaMenu">
                 <div>Captcha</div>

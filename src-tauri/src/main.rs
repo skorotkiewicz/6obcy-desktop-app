@@ -9,7 +9,6 @@ use std::sync::Arc;
 use futures_util::{SinkExt, StreamExt};
 use http::Request;
 use randua;
-// use reqwest;
 use tauri_plugin_store::{PluginBuilder, StoreBuilder};
 use tokio::task;
 use tokio::{net::TcpListener, sync::Mutex};
@@ -20,12 +19,6 @@ async fn client() -> Result<()> {
 
     let request = Request::builder()
         .method("GET")
-        // .header("Host", "6obcy.org")
-        // .header("Origin", "https://6obcy.org/")
-        // .header("Connection", "Upgrade")
-        // .header("Upgrade", "websocket")
-        // .header("Sec-WebSocket-Version", "13")
-        // .header("Sec-WebSocket-Key", tungstenite::handshake::client::generate_key())
         .header("Accept", "*/*")
         .header("Accept-Encoding", "gzip, deflate, br")
         .header("Accept-Language", "pl,en-US;q=0.7,en;q=0.3")
