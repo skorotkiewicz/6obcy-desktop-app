@@ -1,0 +1,118 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.Chat {
+  background-color: #222831;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+header {
+  color: #eeeeee;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 5px solid #393e46;
+}
+main {
+  background-color: #eeeeee;
+  flex-grow: 1;
+  display: flex;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  background-color: #00adb5;
+  width: 200px;
+  border-right: 2px dotted #393e46;
+  padding: 10px;
+
+  button {
+    margin-bottom: 5px;
+    border: 1px solid #393e46;
+    padding: 3px;
+    cursor: pointer;
+  }
+
+  input {
+    border: 1px solid #393e46;
+    padding: 3px;
+  }
+}
+
+footer {
+  background-color: #393e46;
+
+  input {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 3rem;
+    border: 2px solid #00adb5;
+    width: 98%;
+    background-color: #eeeeee;
+  }
+}
+
+.messages {
+  padding: 5px;
+  overflow-y: scroll;
+  height: 50vh;
+}
+.autoWelcome {
+  margin-top: 10px;
+}
+.connected {
+  color: green;
+}
+.infos {
+  color: blue;
+}
+.proxyInfo {
+  color: #f05454;
+  font-weight: bold;
+  background-color: #e8e8e8;
+  padding: 5px;
+  border-radius: 0.5rem;
+}
+.proxyMenu,
+.captchaMenu {
+  display: flex;
+  border: 3px solid #222831;
+  padding: 10px;
+  border-radius: 1rem;
+  div {
+    align-items: center;
+
+    strong {
+      padding: 10px;
+    }
+
+    button,
+    input {
+      margin-top: 10px;
+      width: 50%;
+    }
+    input {
+      padding: 5px;
+    }
+  }
+}
+details {
+  summary {
+    cursor: pointer;
+  }
+}
+.message {
+  .date {
+    color: #aaaaaa;
+  }
+}

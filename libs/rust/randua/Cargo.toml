@@ -1,0 +1,13 @@
+[package]
+name = "randua"
+version = "0.1.6"
+authors = ["roadup"]
+edition = "2018"
+description = "A random user-agent"
+repository ="https://github.com/roadhub/randua.git"
+readme = "./README.md"
+license="MIT"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.7.0"

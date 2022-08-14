@@ -1,0 +1,82 @@
+[package]
+name = "app"
+version = "0.1.0"
+description = "6obcy Desktop App"
+authors = ["Sebastian Korotkiewicz"]
+license = ""
+repository = ""
+default-run = "app"
+edition = "2021"
+rust-version = "1.57"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1.0.4", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+tauri = { version = "1.0.5", features = ["api-all"] }
+tokio = { version = "1.11", features = ["net"] }
+tokio-tungstenite = "*"
+futures = "*"
+http = "*"
+# randua = "0.1.6"
+reqwest = "0.11.11"
+futures-util = { version = "0.3", default-features = false, features = ["sink", "std"] }
+tauri-plugin-websocket = { path = "../libs/rust/websocket/" }
+tauri-plugin-store = { path = "../libs/rust/store" }
+randua = { path = "../libs/rust/randua" }
+# reqwest = { path = "../libs/rust/reqwest" }
+
+
+[dependencies.tungstenite]
+version = "0.17.3"
+
+[dependencies.native-tls-crate]
+optional = true
+package = "native-tls"
+version = "0.2.7"
+
+[dependencies.rustls]
+optional = true
+version = "0.20.0"
+
+[dependencies.rustls-native-certs]
+optional = true
+version = "0.6.1"
+
+[dependencies.tokio-native-tls]
+optional = true
+version = "0.3.0"
+
+[dependencies.tokio-rustls]
+optional = true
+version = "0.23.0"
+
+[dependencies.webpki]
+optional = true
+version = "0.22.0"
+
+[dependencies.webpki-roots]
+optional = true
+version = "0.22.1"
+
+# [dependencies.tauri-plugin-store]
+# git = "https://github.com/tauri-apps/tauri-plugin-store"
+# branch = "dev"
+# # tag = "v0.1.0"
+
+# [dependencies.tauri-plugin-websocket]
+# git = "https://github.com/tauri-apps/tauri-plugin-websocket"
+# branch = "dev"
+
+
+[features]
+# by default Tauri runs in production mode
+# when `tauri dev` runs it is executed with `cargo run --no-default-features` if `devPath` is an URL
+default = [ "custom-protocol" ]
+# this feature is used used for production builds where `devPath` points to the filesystem
+# DO NOT remove this
+custom-protocol = [ "tauri/custom-protocol" ]
