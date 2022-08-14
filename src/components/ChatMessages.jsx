@@ -13,8 +13,8 @@ const ChatMessages = ({ messages }) => {
   return (
     <div className="message">
       {messages.map((d, key) => (
-        <span key={key} title={moment(d.time).format("dddd, hh:mm:ss")}>
-          <span className="date">{moment(d.time).format("hh:mm")} | </span>
+        <span key={key} title={moment(d.time).format("dddd, HH:mm:ss")}>
+          <span className="date">{moment(d.time).format("HH:mm")} | </span>
 
           <strong style={{ color: d.who === 1 ? "blue" : "green" }}>
             {d.who === 1 ? "Ja: " : d.who === 2 ? "" : "Obcy: "}
