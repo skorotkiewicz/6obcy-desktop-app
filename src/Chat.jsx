@@ -72,6 +72,7 @@ function Chat() {
   const startConversation = () => {
     if (connectStatus === 0) return;
     setCeid((prev) => prev + 1);
+    topicCountdown !== 0 && resetCountdown();
 
     _emitSocketEvent("_sas", {
       channel: "main",
@@ -213,12 +214,15 @@ function Chat() {
     setInfo("Rozmowa zakończona...");
     setTyp("");
     setConnected(false);
+    resetCountdown();
 
+    SaveMessage(2, "Obcy się rozłączył");
+  };
+
+  const resetCountdown = () => {
     setTopicCountdown(0);
     tcountdown = 0;
     clearInterval(countdown.current);
-
-    SaveMessage(2, "Obcy się rozłączył");
   };
 
   const _handleCount = (c) => {
