@@ -7,6 +7,12 @@
 <h1 align="center">6obcy Desktop App</h1>
 <p align="center">Simple Desktop client for the Polish 6obcy.org "Omegle" website.</p>
 
+<p align="center">
+    <a href="https://github.com/skorotkiewicz/6obcy-desktop-app">
+        <img src="images/6obcy-desktop-app.png" style="width: 600px;display: block; margin: 0 auto;" />
+    </a>
+</p>
+
 ## Download
 
 The app is available for Windows, macOS and Ubuntu from [Releases](https://github.com/skorotkiewicz/6obcy-desktop-app/releases).
