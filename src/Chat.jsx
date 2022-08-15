@@ -407,11 +407,10 @@ function Chat() {
           <button
             className="p-btn p-btn-sm"
             onClick={sendRandTopic}
-            disabled={!connected}
+            disabled={!connected || topicCountdown > 0}
           >
             {topicCountdown !== 0
-              ? // ? `Kolejny za ${topicCountdown} sekund`
-                `Kolejny ${topicCountdown}`
+              ? `Kolejny ${topicCountdown}`
               : "Wylosuj temat"}
           </button>
 
