@@ -23,6 +23,7 @@ const ChatMessages = ({ messages }) => {
         <span key={key} title={moment(d.time).format("dddd, HH:mm:ss")}>
           <span
             className="date"
+            title="Kopiuj wiadomość"
             onClick={() => {
               navigator.clipboard.writeText(d.msg);
             }}
