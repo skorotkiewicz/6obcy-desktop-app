@@ -37,7 +37,6 @@ const ChatMessages = ({ messages }) => {
           {d.who === 2 ? (
             <span style={{ color: "red" }}>{d.msg}</span>
           ) : (
-            // d.msg
             <Linkify componentDecorator={componentDecorator}>{d.msg}</Linkify>
           )}
           <div ref={divRef}></div>
