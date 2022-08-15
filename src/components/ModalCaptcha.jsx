@@ -15,7 +15,7 @@ const ModalCaptcha = ({
       <div className={`p-modal ${captcha ? "active" : ""}`}>
         <h2>Werifikacja</h2>
 
-        <div>Captcha</div>
+        <div>Przepisz kod z obrazka (7 znaków)</div>
         <div>
           <img src={captcha} alt="captcha" />
         </div>
@@ -34,13 +34,10 @@ const ModalCaptcha = ({
           />
         </div>
 
-        <div>
-          <button
-            className="p-btn p-prim-col p-btn-sm"
-            onClick={() => captchaText && SolveCaptcha(captchaText)}
-          >
+        <div className="p-modal-button-container">
+          <span onClick={() => captchaText && SolveCaptcha(captchaText)}>
             Zatwierdź
-          </button>
+          </span>
         </div>
       </div>
     </div>

@@ -286,6 +286,10 @@ details {
   }
 }
 .captchaModel .p-modal.active {
+  h2,
+  img {
+    padding: 10px;
+  }
   background-color: #c9c9c9;
 }
 
