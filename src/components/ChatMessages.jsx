@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-// import Linkify from "react-linkify";
+import Linkify from "react-linkify";
 import moment from "moment";
 import "moment/locale/pl";
 moment.locale("pl");
@@ -10,6 +10,12 @@ const ChatMessages = ({ messages }) => {
   useEffect(() => {
     divRef.current?.scrollIntoView({ behavior: "smooth" });
   });
+
+  const componentDecorator = (href, text, key) => (
+    <a href={href} key={key} target="_blank">
+      {text}
+    </a>
+  );
 
   return (
     <div className="message">
@@ -30,8 +36,8 @@ const ChatMessages = ({ messages }) => {
           {d.who === 2 ? (
             <span style={{ color: "red" }}>{d.msg}</span>
           ) : (
-            d.msg
-            // <Linkify target="_blank">{d.msg}</Linkify>
+            // d.msg
+            <Linkify componentDecorator={componentDecorator}>{d.msg}</Linkify>
           )}
           <div ref={divRef}></div>
         </span>
