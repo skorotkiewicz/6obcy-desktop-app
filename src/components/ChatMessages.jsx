@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+// import Linkify from "react-linkify";
 import moment from "moment";
 import "moment/locale/pl";
 moment.locale("pl");
@@ -14,12 +15,24 @@ const ChatMessages = ({ messages }) => {
     <div className="message">
       {messages.map((d, key) => (
         <span key={key} title={moment(d.time).format("dddd, HH:mm:ss")}>
-          <span className="date">{moment(d.time).format("HH:mm")} | </span>
+          <span
+            className="date"
+            onClick={() => {
+              navigator.clipboard.writeText(d.msg);
+            }}
+          >
+            {moment(d.time).format("HH:mm")} |{" "}
+          </span>
 
           <strong style={{ color: d.who === 1 ? "blue" : "green" }}>
             {d.who === 1 ? "Ja: " : d.who === 2 ? "" : "Obcy: "}
           </strong>
-          {d.who === 2 ? <span style={{ color: "red" }}>{d.msg}</span> : d.msg}
+          {d.who === 2 ? (
+            <span style={{ color: "red" }}>{d.msg}</span>
+          ) : (
+            d.msg
+            // <Linkify target="_blank">{d.msg}</Linkify>
+          )}
           <div ref={divRef}></div>
         </span>
       ))}

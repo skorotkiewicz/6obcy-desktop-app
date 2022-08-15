@@ -263,15 +263,22 @@ details {
   }
 }
 .message {
+  .date {
+    cursor: copy;
+  }
+
   span {
     padding: 3px;
-    cursor: copy;
-
+    a {
+      color: #393e46;
+    }
     &:hover {
       background-color: #dddddd;
     }
+    &:active {
+      transform: scale(0.98);
+    }
   }
-
   .date {
     color: #aaaaaa;
   }
