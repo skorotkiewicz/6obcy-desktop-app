@@ -106,11 +106,6 @@
     }
   }
 }
-// @media only screen and (min-width: 900px) and (max-width: 1079px) {
-//   aside {
-//     display: none;
-//   }
-// }
 
 .Chat {
   background-color: #222831;
@@ -121,30 +116,28 @@
 
 .actionsMobi {
   display: none;
+  button {
+    height: 70%;
+  }
 }
 
 .mobileAside {
   display: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 10;
-  margin: 10px;
 
   .openModel {
-    padding: 10px;
+    position: absolute;
+    right: 0;
+    padding: 20px;
     cursor: pointer;
   }
   .randMobileTopic {
+    position: absolute;
     padding: 10px;
     border: 0;
+    bottom: 70px;
+    right: 0;
     background-color: transparent;
     cursor: pointer;
-    // display: none;
-    // position: absolute;
-    // right: 0;
-    // top: 0;
-    // z-index: 10;
   }
 }
 
@@ -155,6 +148,7 @@ header {
   justify-content: space-between;
   border-bottom: 5px solid #393e46;
 }
+
 main {
   background-color: #eeeeee;
   flex-grow: 1;
@@ -192,6 +186,7 @@ aside {
 footer {
   background-color: #393e46;
   display: flex;
+  width: 100vw;
 
   input {
     padding: 10px;
@@ -296,4 +291,5 @@ aside,
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+  cursor: default;
 }
