@@ -3,6 +3,14 @@ import { Store } from "./../libs/js/store";
 import ChatMessages from "./components/ChatMessages";
 import useWebSocket from "react-use-websocket";
 import "./Chat.scss";
+// import "./styles/Buttons.scss";
+// import "./styles/Forms.scss";
+// import "./styles/Modals.scss";
+// import "./styles/Icons.scss";
+import AutoConnectBtn from "./components/AutoConnectBtn";
+import Modal from "./components/Modal";
+import WelcomeMessage from "./components/WelcomeMessage";
+import ConnectButton from "./components/ConnectButton";
 
 function Chat() {
   const [ckey, setCkey] = useState("");
@@ -21,6 +29,7 @@ function Chat() {
   const [confirmDisconnect, setConfirmDisconnect] = useState(false);
   const [topicCountdown, setTopicCountdown] = useState(0);
   const [connectStatus, setConnectStatus] = useState(0);
+  const [openModal, setOpenModal] = useState(false);
   const [ceid, setCeid] = useState(1);
   const countdown = useRef(null);
   let tcountdown = 0;
@@ -335,47 +344,75 @@ function Chat() {
   return (
     <div className="Chat">
       <header>
-        <span>6obcy Desktop App</span>
+        <span className={info || connected ? "noneLogo" : ""}>
+          6obcy Desktop App
+        </span>
         <span>{info ? info : connected && "Połączono"}</span>
         {count ? <span>{count} osób online</span> : <span>łączenie...</span>}
       </header>
 
+      <Modal
+        reconnect={reconnect}
+        setReconnect={setReconnect}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        welcomeMessage={welcomeMessage}
+        setWelcomeMessage={setWelcomeMessage}
+        store={store}
+      />
+
       <main>
-        <aside>
-          <button
-            onClick={startConversation}
-            disabled={
-              connected || connectStatus === 0 || info === "Szukam rozmówcy..."
-            }
+        <div className="mobileAside">
+          <a
+            className="openModel"
+            onClick={() => setOpenModal((prev) => !prev)}
           >
-            Połącz
-          </button>
-          <button onClick={sendDisconnect} disabled={!connected}>
-            {confirmDisconnect ? "Czy na pewno?" : "Rozłącz"}
-          </button>
-          <button onClick={sendRandTopic} disabled={!connected}>
-            {topicCountdown !== 0
-              ? `Kolejny za ${topicCountdown} sekund`
-              : "Wylosuj temat"}
-          </button>
+            <i className="gg-more-vertical-alt"></i>
+          </a>
           <button
-            onClick={() => setReconnect((prev) => !prev)}
+            className="randMobileTopic"
+            onClick={sendRandTopic}
             disabled={!connected}
           >
-            Auto łączenie {reconnect ? "ON" : "OFF"}
+            <i
+              style={{ color: topicCountdown !== 0 ? "gray" : "red" }}
+              className="gg-dice-5"
+            ></i>
           </button>
-          <div className="autoWelcome">
-            <span>Auto wiadomość powitalna</span>
-            <input
-              type="text"
-              value={welcomeMessage}
-              placeholder="Treść auto wiadomości"
-              onChange={async (e) => {
-                setWelcomeMessage(e.target.value);
-                await store.set("welcome", e.target.value);
-              }}
-            />
-          </div>
+        </div>
+
+        <aside>
+          <ConnectButton
+            startConversation={startConversation}
+            connected={connected}
+            connectStatus={connectStatus}
+            info={info}
+          />
+
+          <button
+            className="p-btn p-btn-sm"
+            onClick={sendDisconnect}
+            disabled={!connected}
+          >
+            {confirmDisconnect ? "Czy na pewno?" : "Rozłącz"}
+          </button>
+          <button
+            className="p-btn p-btn-sm"
+            onClick={sendRandTopic}
+            disabled={!connected}
+          >
+            {topicCountdown !== 0
+              ? // ? `Kolejny za ${topicCountdown} sekund`
+                `Kolejny ${topicCountdown}`
+              : "Wylosuj temat"}
+          </button>
+
+          <AutoConnectBtn reconnect={reconnect} setReconnect={setReconnect} />
+          <WelcomeMessage
+            welcomeMessage={welcomeMessage}
+            setWelcomeMessage={setWelcomeMessage}
+            store={store}
+          />
         </aside>
         <div>
           <div className="messages">
@@ -389,6 +426,7 @@ function Chat() {
                 <div>
                   <input
                     type="text"
+                    className="p-form-text-alt p-form-no-validate"
                     placeholder="Kod z obrazka (7 znaków)"
                     onChange={(e) => setCaptchaText(e.target.value)}
                     onKeyDown={(e) => {
@@ -401,6 +439,7 @@ function Chat() {
 
                 <div>
                   <button
+                    className="p-btn p-prim-col p-btn-sm"
                     onClick={() => captchaText && SolveCaptcha(captchaText)}
                   >
                     Zatwierdź
@@ -413,6 +452,25 @@ function Chat() {
           </div>
           {typing && <span>Obcy pisze...</span>}
           <footer>
+            <div className="actionsMobi">
+              {connected ? (
+                <button
+                  className="p-btn p-btn-sm"
+                  onClick={sendDisconnect}
+                  disabled={!connected}
+                >
+                  {confirmDisconnect ? "Czy na pewno?" : "Rozłącz"}
+                </button>
+              ) : (
+                <ConnectButton
+                  startConversation={startConversation}
+                  connected={connected}
+                  connectStatus={connectStatus}
+                  info={info}
+                />
+              )}
+            </div>
+
             <form onSubmit={sendForm}>
               <input
                 type="text"

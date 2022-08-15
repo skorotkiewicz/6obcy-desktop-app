@@ -1,14 +1,153 @@
+@use "./styles/Buttons.scss";
+@use "./styles/Forms.scss";
+@use "./styles/Icons.scss";
+@use "./styles/Modals.scss";
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+
+@media only screen and (max-width: 100px) {
+  .Chat {
+    display: none !important;
+  }
+
+  html {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    background: linear-gradient(
+      124deg,
+      #ff2400,
+      #e81d1d,
+      #e8b71d,
+      #e3e81d,
+      #1de840,
+      #1ddde8,
+      #2b1de8,
+      #dd00f3,
+      #dd00f3
+    );
+    background-size: 1800% 1800%;
+
+    -webkit-animation: rainbow 18s ease infinite;
+    -z-animation: rainbow 18s ease infinite;
+    -o-animation: rainbow 18s ease infinite;
+    animation: rainbow 18s ease infinite;
+  }
+
+  @-webkit-keyframes rainbow {
+    0% {
+      background-position: 0% 82%;
+    }
+    50% {
+      background-position: 100% 19%;
+    }
+    100% {
+      background-position: 0% 82%;
+    }
+  }
+  @-moz-keyframes rainbow {
+    0% {
+      background-position: 0% 82%;
+    }
+    50% {
+      background-position: 100% 19%;
+    }
+    100% {
+      background-position: 0% 82%;
+    }
+  }
+  @-o-keyframes rainbow {
+    0% {
+      background-position: 0% 82%;
+    }
+    50% {
+      background-position: 100% 19%;
+    }
+    100% {
+      background-position: 0% 82%;
+    }
+  }
+  @keyframes rainbow {
+    0% {
+      background-position: 0% 82%;
+    }
+    50% {
+      background-position: 100% 19%;
+    }
+    100% {
+      background-position: 0% 82%;
+    }
+  }
+}
+@media only screen and (max-width: 390px) {
+  aside,
+  .noneLogo {
+    display: none !important;
+  }
+  .openModel,
+  .mobileAside,
+  .actionsMobi {
+    display: block !important;
+  }
+  footer {
+    .connectButton {
+      display: block !important;
+    }
+    input {
+      width: calc(100vw - 125px) !important;
+    }
+  }
+}
+// @media only screen and (min-width: 900px) and (max-width: 1079px) {
+//   aside {
+//     display: none;
+//   }
+// }
+
 .Chat {
   background-color: #222831;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+
+.actionsMobi {
+  display: none;
+}
+
+.mobileAside {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  margin: 10px;
+
+  .openModel {
+    padding: 10px;
+    cursor: pointer;
+  }
+  .randMobileTopic {
+    padding: 10px;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    // display: none;
+    // position: absolute;
+    // right: 0;
+    // top: 0;
+    // z-index: 10;
+  }
+}
+
 header {
   color: #eeeeee;
   padding: 10px;
@@ -20,6 +159,7 @@ main {
   background-color: #eeeeee;
   flex-grow: 1;
   display: flex;
+  position: relative;
 
   div {
     display: flex;
@@ -34,12 +174,12 @@ aside {
   background-color: #00adb5;
   width: 200px;
   border-right: 2px dotted #393e46;
-  padding: 10px;
+  // padding: 10px;
 
   button {
-    margin-bottom: 5px;
+    // margin-bottom: 5px;
     border: 1px solid #393e46;
-    padding: 3px;
+    // padding: 3px;
     cursor: pointer;
   }
 
@@ -51,14 +191,19 @@ aside {
 
 footer {
   background-color: #393e46;
+  display: flex;
 
   input {
     padding: 10px;
     margin: 10px;
     border-radius: 3rem;
     border: 2px solid #00adb5;
-    width: 98%;
+    width: calc(100vw - 200px);
     background-color: #eeeeee;
+  }
+
+  .connectButton {
+    display: none;
   }
 }
 
@@ -68,7 +213,13 @@ footer {
   height: 50vh;
 }
 .autoWelcome {
-  margin-top: 10px;
+  margin-top: 30px;
+
+  span {
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+  }
 }
 .connected {
   color: green;
