@@ -48,7 +48,7 @@ function Chat() {
       setConnected(false);
       setTyp("");
     },
-    shouldReconnect: (closeEvent) => true,
+    shouldReconnect: (_closeEvent) => true,
   });
 
   useEffect(() => {
@@ -326,6 +326,7 @@ function Chat() {
     });
 
     setCaptcha("");
+    setCaptchaText("");
     startConversation();
   };
 
@@ -344,7 +345,6 @@ function Chat() {
         <span className={info || connected ? "noneLogo" : ""}>
           6obcy Desktop App
         </span>
-        {/* <span>{info ? info : connected && "Połączono"}</span> */}
         <span>
           {captcha ? "Werifikacja" : info ? info : connected && "Połączono"}
         </span>
