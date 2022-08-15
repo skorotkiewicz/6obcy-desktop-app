@@ -7,6 +7,7 @@ import AutoConnectBtn from "./components/AutoConnectBtn";
 import Modal from "./components/Modal";
 import WelcomeMessage from "./components/WelcomeMessage";
 import ConnectButton from "./components/ConnectButton";
+import ModalCaptcha from "./components/ModalCaptcha";
 
 function Chat() {
   const [ckey, setCkey] = useState("");
@@ -15,7 +16,7 @@ function Chat() {
   const [typing, setTyp] = useState("");
   const [info, setInfo] = useState("");
   const [count, setCount] = useState(0);
-  const [connected, setConnected] = useState(false);
+  const [connected, setConnected] = useState(false); // user
   const [myTyping, setMyTyping] = useState(false);
   const [captcha, setCaptcha] = useState("");
   const [captchaText, setCaptchaText] = useState("");
@@ -24,7 +25,7 @@ function Chat() {
   const [reconnect, setReconnect] = useState(false);
   const [confirmDisconnect, setConfirmDisconnect] = useState(false);
   const [topicCountdown, setTopicCountdown] = useState(0);
-  const [connectStatus, setConnectStatus] = useState(0);
+  const [connectStatus, setConnectStatus] = useState(0); // server
   const [openModal, setOpenModal] = useState(false);
   const [ceid, setCeid] = useState(1);
   const countdown = useRef(null);
@@ -343,9 +344,20 @@ function Chat() {
         <span className={info || connected ? "noneLogo" : ""}>
           6obcy Desktop App
         </span>
-        <span>{info ? info : connected && "Połączono"}</span>
+        {/* <span>{info ? info : connected && "Połączono"}</span> */}
+        <span>
+          {captcha ? "Werifikacja" : info ? info : connected && "Połączono"}
+        </span>
+
         {count ? <span>{count} osób online</span> : <span>łączenie...</span>}
       </header>
+
+      <ModalCaptcha
+        captcha={captcha}
+        setCaptchaText={setCaptchaText}
+        captchaText={captchaText}
+        SolveCaptcha={SolveCaptcha}
+      />
 
       <Modal
         reconnect={reconnect}
@@ -412,38 +424,6 @@ function Chat() {
         </aside>
         <div>
           <div className="messages">
-            {captcha.length > 0 && (
-              <div className="captchaMenu">
-                <div>Captcha</div>
-                <div>
-                  <img src={captcha} alt="captcha" />
-                </div>
-
-                <div>
-                  <input
-                    type="text"
-                    className="p-form-text-alt p-form-no-validate"
-                    placeholder="Kod z obrazka (7 znaków)"
-                    onChange={(e) => setCaptchaText(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        captchaText && SolveCaptcha(captchaText);
-                      }
-                    }}
-                  />
-                </div>
-
-                <div>
-                  <button
-                    className="p-btn p-prim-col p-btn-sm"
-                    onClick={() => captchaText && SolveCaptcha(captchaText)}
-                  >
-                    Zatwierdź
-                  </button>
-                </div>
-              </div>
-            )}
-
             <ChatMessages messages={messages} />
           </div>
           {typing && <span>Obcy pisze...</span>}
