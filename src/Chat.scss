@@ -263,6 +263,15 @@ details {
   }
 }
 .message {
+  span {
+    padding: 3px;
+    cursor: copy;
+
+    &:hover {
+      background-color: #dddddd;
+    }
+  }
+
   .date {
     color: #aaaaaa;
   }
