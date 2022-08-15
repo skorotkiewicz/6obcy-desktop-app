@@ -98,7 +98,6 @@ fn main() {
         //   .setup(|app| {
         //   Ok(())
         // })
-        // .plugin(PluginBuilder::default().build())
         .run(tauri::generate_context!())
         .expect("failed to run app");
 }

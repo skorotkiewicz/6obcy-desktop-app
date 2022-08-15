@@ -7,7 +7,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "6obcy-desktop-app",
+    "productName": "6obcy",
     "version": "0.2.1"
   },
   "tauri": {
